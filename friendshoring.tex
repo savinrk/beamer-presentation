@@ -1,0 +1,579 @@
+\documentclass[10pt,xcolor={dvipsnames}]{beamer}
+\usepackage{pgfpages,epigraph, enumitem, appendixnumberbeamer, fontspec, pifont, adjustbox, amsfonts, amsmath, amssymb, svg, graphicx, csquotes, caption, subcaption, booktabs, tabularx, transparent}
+
+% \usefontstheme{professionalfonts}
+% 
+
+\usefonttheme{professionalfonts}
+
+% \renewcommand\mathfamilydefault{\rmdefault}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+
+\usetheme{metropolis}
+\usecolortheme{beaver} 
+
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-10pt} Khadka, Gopinath, and Batarseh (2023) - \textit{Friendshoring in Agricultural Trade} \hfill 2023 IATRC Annual Meeting \hspace{0.3cm}\insertframenumber \hspace{0.1em} /  \inserttotalframenumber}}
+\setbeamertemplate{author}{\centering \textsc{\insertauthor} \par}
+\setbeamertemplate{date}{\scriptsize \vspace{1cm} \centering \insertdate \par}
+\setbeamertemplate{institute}{ \raggedleft \vspace{1cm}  \textsf{\scriptsize \insertinstitute} \par}
+\setlist[itemize]{label={\scalebox{0.8}{$\diamond$}}, itemsep = 10pt}
+\setsansfont[BoldFont={Fira Sans SemiBold}]{Fira Sans Book}
+
+\title{Shifting Alliances - Friendshoring in Agricultural Trade}
+\author[Khadka, Gopinath, and Batarseh (2023)]{\scriptsize Savin Khadka \inst{1} \and Munisamy Gopinath, PhD \inst{1} \and  Feras A. Batarseh, PhD \inst{2}}
+\institute{\scriptsize \inst{1} Dept. of Ag. and Applied Economics \\ University of Georgia \and  \inst{2} Dept. of Biological Systems Engineering \\ Virginia Tech. }
+\scriptsize \date{ 2023 IATRC Annual Meeting \\ 
+Dec 10-12, Clearwater Beach FL}
+
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% Uncomment these lines for an automatically generated outline
+%
+\begin{frame}[plain]{Outline}
+  \tableofcontents
+\end{frame}
+\section{Background}
+
+\begin{frame}[plain]{Uncertainties}
+  \begin{columns}[T] % align columns
+  \scriptsize
+    \begin{column}{.48\textwidth}
+               \begin{itemize}\itemsep20pt
+        \item[\ding{213}] Uncertainty about the future has significant impact on the economy - investment, output, trade ... 
+        \item[\ding{213}] Uncertainty can arise from various sources -  conflicts (political/armed/trade), economic, ...  \pause
+        \item[\ding{213}] Previous work has shown that policy uncertainty in particular has large effects on international trade. 
+        \item[\ding{213}] Machine Learning vs. traditional methods ...
+    \end{itemize}
+    \end{column}% 
+    \pause
+    \hfill
+    \begin{column}{.7\textwidth}
+        \includegraphics[width=\textwidth]{figs/presentationFigs/jaaea.png}
+    \end{column}%
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Friendshoring}
+    \begin{itemize}\itemsep3.4ex
+        \item[\ding{213}] \textbf{Three Cs: consequences and considerations}
+            \begin{itemize}\itemsep1ex
+                    \item \textcolor{NavyBlue}{COVID} - Severe disruptions to the supply/demand sides 
+                    \item \textcolor{red}{Conflict} - Escalating political and armed disputes  
+                    \item \textcolor{ForestGreen}{Climate Change} - Ongoing discussions about the future of production and distribution
+                   
+            \end{itemize} \pause
+        \item[\ding{213}] \textbf{Additional uncertainties} $\implies$ Restructuring of supply chains: rivals $\rightarrow$ allies \pause
+        \item[\ding{213}] \textbf{Resiliency vs. Efficiency/Costs}
+            \begin{itemize}\itemsep1ex
+                \item $\approx$ 5\% drop in global production (WTO)
+                \item $\approx$ 2\% drop in global economic output (IMF)
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+\begin{frame}[plain]{Background}
+\begin{columns}[T] % align columns
+    \begin{column}{.48\textwidth}
+                \vspace{-0.cm}
+                \includegraphics[scale=0.1]{figs/presentationFigs/test.pdf} \par
+                \vspace{10pt}
+                \includegraphics[scale=0.1]{figs/presentationFigs/wsj-ChinaHabit.png}\par
+                \vspace{10pt}
+                \includegraphics[scale=0.2]{figs/presentationFigs/wsj-chinaTies.png}
+    \end{column}% 
+    \pause
+    \hfill
+    \begin{column}{.48\textwidth}
+        \vspace{0.25in}
+        \footnotesize ``Rather than being highly reliant on countries
+                        where we have geopolitical tensions and can’t count on ongoing, reliable supplies, we need to really diversify our group of suppliers. '' \par
+        \small \textit{  Janet Allen, US Treasury Secretary (2022)} \par 
+        \vspace{0.25in}
+        \footnotesize ``We have no eternal allies, and we have no                         perpetual enemies. Our interests are eternal and                  perpetual, and those interests it is our duty to follow. '' \par
+        \small \textit{Lord Palmerston, UK Prime Minister  (1848)}
+    \end{column}%
+\end{columns}
+\end{frame}
+
+\section{Data and Methods}
+\begin{frame}{Data}
+
+\begin{table}[H]
+    \centering
+    \caption*{\small Data Summary}
+    \vspace{-0.2in}
+    \scriptsize
+   \resizebox{\textwidth}{!}{
+   \begin{tabular}{cccc}
+        \toprule
+         \textbf{Product}&  \textbf{HS4-Code} & \textbf{2021 Trade Value (billions of USD)}  & \textbf{Source}\\
+        \midrule
+        \textbf{\textit{Meats}}\\
+         Fresh/chilled Beef & HS-0201 & 28.8 & IHS Markit \\
+         Frozen Beef & HS-0202 & 32.8 & IHS Markit \\
+         Pork & HS-0203 & 36.9 & IHS Markit \\
+         Sheep/Goat & HS-0204 & 10.5 & IHS Markit\\
+         Chicken & HS-0207 & 30.6 & IHS Markit \\
+         \\
+         \textbf{\textit{Grains and Legumes}}\\
+         Wheat & HS-1001 & 61.8 & UN-Comtrade \\
+         Corn & HS-1005 & 52.3 & IHS Markit \\
+         Rice & HS-1006 & 28.4 & UN-comtrade \\
+         Soybean & HS-1201 & 78.5 & IHS Markit \\
+         \\
+         \textbf{\textit{Edible Oils}}\\
+         Soybean Oil & HS-1507 & 17.1 & IHS Markit \\
+         Peanut Oil& HS-1508 & 0.713 & IHS Markit \\
+         Palm Oil& HS-1511 & 51.1 & IHS Markit \\
+         Sunflower Oil& HS-1512 & 16.7 & IHS Markit \\
+         Rapeseed Oil & HS-1514 & 12.3 & IHS Markit \\
+        \bottomrule 
+    \end{tabular}}
+    
+\end{table}
+
+\end{frame}
+
+
+\begin{frame}{Network Approach}
+    \begin{figure}
+        \centering
+         \includegraphics[width=0.8\textwidth]{figs/presentationFigs/corn2022.png}
+         \caption*{\tiny  Corn Trade Network for 2022}
+    \end{figure}
+% \hfill
+\vspace{-20pt}
+\footnotesize
+%     \begin{column}{.3\textwidth}
+         \begin{itemize}\itemsep1pt
+             \item[\ding{213}] Nodes (countries) and Edges (trade) 
+             \item[\ding{213}] Networks dynamics for analyses and prediction 
+             \begin{itemize}
+             \scriptsize
+                 \item \textit{Centrality Measures, Community Detection, Global Clustering}
+             \end{itemize}
+         \end{itemize}
+%     \end{column}
+% \end{columns}
+\end{frame}
+\begin{frame}{Centrality Measures}
+    \begin{itemize}\itemsep15pt
+        \small
+        \item[\ding{213}] \textbf{Degree Centrality}
+            \scriptsize
+            \begin{itemize}\itemsep0.4pt
+                \item Measures connections to other nodes 
+                \item Higher degree centrality $\implies$ trades with \textcolor{blue}{more partners}
+                \item eg: more friends on Facebook 
+                \item In directed networks, in-degree = imports partners \& out-degree = exports partners
+                \item $D_i = \sum_j e(i,j)$, where $e(i,j) = 1$ if link present, $0$ otherwise
+            \end{itemize}
+            
+        \small
+        \item[\ding{213}] \textbf{Betweenness Centrality}
+            \scriptsize
+            \begin{itemize}\itemsep0.4pt
+                \item Measures connections facilitated between other nodes
+                \item Higher betweenness centrality $\implies$ acts like a \textcolor{blue}{bridge}
+                \item eg: mutual friends with lots of people
+                \item $B_i = \sum_{a,b} \frac{n_{aib}}{n_{ab}} = $  fraction of optimal paths between $a$ and $b$ passing through $i$
+            \end{itemize}
+        
+        \small
+        \item[\ding{213}] \textbf{Laplacian Centrality}
+            \scriptsize
+            \begin{itemize}\itemsep0.4pt
+                \item Measures \textcolor{blue}{global influence} on the network
+                \item Higher Laplacian centrality $\implies$ large change in the network if removed
+                \item eg: friends with \textit{popular} people
+                \item $L_i = \frac{E_L(G) - E_L(G_i)}{E_L(G)}$, $E_L(G) = $ Laplacian Energy \& $E_L(G_i)$ Laplacian Energy with $i$ removed
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Community Detection}
+    \begin{itemize}\itemsep20pt
+        \small
+        \item[\ding{213}] Community = groups of nodes that are densely interconnected.
+        \item[\ding{213}] More connections within communities and few between communities.
+        \item[\ding{213}] Identified by maximizing \textit{\textbf{modularity}}: \scriptsize (Zhu, Chen, and Zeng, 2020)\\
+         \small \centering $ Q =  \sum_{c=1}^{N} \left [ \frac{\textcolor{ForestGreen}{L_c}}{\textcolor{blue}{m}} - \textcolor{Sepia}{\lambda} \left( \frac{\textcolor{orange}{k_c^{in} k_c^{out}}}{2\textcolor{blue}{m}}\right) \right]$,\\
+        \scriptsize 
+        \raggedright
+            $\textcolor{ForestGreen}{L_c} = $ number of intra-community links in community $c$,\\
+            $\textcolor{blue}{m} = $ number of edges in community, \\
+            $\textcolor{Sepia}{\lambda}= $ resolution limit, \\
+            $\textcolor{orange}{k_c^{in}, k_c^{out}} = $ sums of in- and out-degrees of nodes in community $c$, \\
+        
+        \small
+        \item[\ding{213}] To detect optimal communities for each commodity for each year:    
+        
+        \begin{itemize}\itemsep2pt
+            \scriptsize
+            \item assign each node to its own community
+            \item join pairs of communities such that modularity is maximized
+            \item conclude when no further modularity increase is possible
+        \end{itemize}
+    \end{itemize}  
+\end{frame}
+
+
+
+\begin{frame}{Clustering}
+    \begin{itemize}\itemsep20pt
+        \small
+        \item[\ding{213}] Measures tendency of connectivity within a network.
+        \item[\ding{213}] Function of \textit{triangles} observed in a network vs. total \textit{triangles} possible.\\
+        \item[\ding{213}] For a weighted directed network, clustering coefficient of each node $i$: \\
+          \phantom{sakjflsajfdlksjf} $i_c = \frac{N_i}{2(deg^{tot}(i)(deg^{tot}(i)-1) - 2deg^{false}(i))} \hfill \frac{\textcolor{blue}{ \Delta \text{s observed}}}{\textcolor{blue}{\text{total } \Delta \text{s possible}}}$  \par
+        \tiny
+        $N_i = $ number of directed triangles through node $i$,\\
+        $deg^{tot}_i = $ sum of in- and out-degrees of node $i$, \\
+        $deg^{false}_i = $ number of ``false'' triangles through node $i$
+
+        \small
+        \item[\ding{213}] The global clustering coefficient of the whole network is the average of clustering coefficient for all nodes: \\
+        \small \centering $ \text{\footnotesize Average Clustering Coefficient} (G_c) = \frac{1}{I}\sum_i^I t_i, $ \\
+        \raggedright 
+        \tiny
+        $I = $ number of nodes in the network, \\
+        $t_i = $ clustering coefficient for each node $i$\\
+        
+    \end{itemize}
+\end{frame}
+
+\section{Results}
+\begin{frame}{Centrality Changes - Pork}
+    \begin{figure}
+        \centering
+        \caption*{\footnotesize Centrality Changes for Pork}
+        \includegraphics[width=\textwidth]{figs/presentationFigs/porkCentralities.pdf}
+    \end{figure}
+    \begin{itemize}
+        \small
+        \item[\ding{213}] China now imports from more partners. 
+        \item[\ding{213}] US exporting to fewer partners, Russian imports have collapsed. 
+        \item[\ding{213}] Betweenness decreasing for all countries. 
+        \item[\ding{213}] China's influence on global network is remarkably higher compared to the US.  
+    \end{itemize}
+\end{frame}
+\begin{frame}[plain]{Community Detection - Pork}
+\resizebox{\textwidth}{!}{
+        \centering
+        \begin{tabular}{c|cccccc}
+        \toprule
+            & \multicolumn{6}{c}{\textbf{Average Number of Communities }} \\
+        \hline
+          \textbf{Commodity}   & \textbf{1995-1999} & \textbf{2000-2004} & \textbf{2005-2009} & \textbf{2010-2014}& \textbf{2015-2019} & \textbf{\textcolor{blue}{2020-2022}} \\
+          \hline
+          Pork & 6.6 & 6.6 & 6.4  & 7.6 & 8.4 & \textcolor{blue}{8.67}\\
+        \bottomrule
+        \end{tabular}
+        \caption{Average Number of Communities}
+ }
+\begin{itemize}
+ \footnotesize
+    \item[\ding{213}] Number of communities increasing $\implies$ network more divided
+\end{itemize}
+\pause
+
+\includegraphics[width=\textwidth]{figs/presentationFigs/pork-comms-table.png}
+
+\end{frame}
+
+\begin{frame}{Communities - Pork (2013)}
+    \includegraphics[width=\textwidth]{figs/networks/pork2013network.png}
+\end{frame}
+
+\begin{frame}{Communities - Pork (2019)}
+    \includegraphics[width=\textwidth]{figs/presentationFigs/pork2019all.png}
+\end{frame}
+
+
+\iffalse
+\begin{frame}{Communities - Pork (China)}
+
+\begin{columns}[onlytextwidth]
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny China neighbors (2017)}
+                \includegraphics[scale=0.1]{figs/networks/pork2017chinaNeighbors.png}
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\hfill
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny China neighbors (2019)}
+                \includegraphics[scale=0.1]{figs/networks/pork2019chinaNeighbors.png}\\
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\end{columns}
+\vspace{-35pt}
+\begin{figure}
+    \centering
+    \caption*{\tiny China neighbors (2022)}    
+    \includegraphics[scale=0.15]{figs/networks/pork2022chinaNeighbor.png}    
+\end{figure}
+
+\end{frame}
+\begin{frame}{Communities - Pork (US)}
+
+\begin{columns}[onlytextwidth]
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny US neighbors (2017)}
+                \includegraphics[scale=0.1]{figs/networks/pork2017usneighbors.png}
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\hfill
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny US neighbors (2019)}
+                \includegraphics[scale=0.1]{figs/networks/pork2019usneighbors.png}\\
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\end{columns}
+\vspace{-35pt}
+\begin{figure}
+    \centering
+    \caption*{\tiny US neighbors (2022)}
+    \includegraphics[scale=0.11]{figs/networks/pork2022usbeinghbors.png}    
+\end{figure}
+
+\end{frame}
+\begin{frame}{Communities - Pork (Brazil)}
+\begin{columns}[onlytextwidth]
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny Brazil neighbors (2017)}
+                \includegraphics[scale=0.1]{figs/networks/pork2017brazilneighbors.png}
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\hfill
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny Brazil neighbors (2019)}
+                \includegraphics[scale=0.1]{figs/networks/pork2019brazilneighbors.png}\\
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\end{columns}
+\vspace{-35pt}
+\begin{figure}
+    \centering
+    \caption*{\tiny Brazil neighbors (2022)}
+
+    \includegraphics[scale=0.15]{figs/networks/pork2022brazilneighbors.png}    
+\end{figure}
+
+\end{frame}
+\fi 
+
+\begin{frame}{Clustering - Pork}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{figs/presentationFigs/pork-clust.pdf}
+\end{figure}
+\begin{itemize}
+    \small
+    \item[\ding{213}] Declining clustering coefficient $\implies$ decline in network stability \\
+    \hfill \footnotesize (less interconnected than before)\quad \phantom{asdj}
+    \small
+    \item[\ding{213}] Same pattern is observed in other food commodities.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Centrality Changes - Corn}
+    \begin{figure}
+        \centering
+        \caption*{\footnotesize Centrality Changes for Corn}
+        \includegraphics[width=\textwidth]{figs/centralities/corn-cent.pdf}
+    \end{figure}
+    \begin{itemize}
+        \small
+        \item[\ding{213}] China's now imports from more partners. 
+        \item[\ding{213}] US not exports to fewer partners. 
+        \item[\ding{213}] Betweenness decreasing for all countries, US trends upwards after Phase One agreement and COVID recovery. 
+        \item[\ding{213}] US's influence on global network is declining.  
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]{Community Detection - Corn}
+\resizebox{\textwidth}{!}{
+        \centering
+        \begin{tabular}{c|cccccc}
+        \toprule
+            & \multicolumn{6}{c}{\textbf{Average Number of Communities}} \\
+        \hline
+          \textbf{Commodity}   & \textbf{1995-1999} & \textbf{2000-2004} & \textbf{2005-2009} & \textbf{2010-2014}& \textbf{2015-2019} & \textbf{\textcolor{blue}{2020-2022}} \\
+          \hline
+          Corn & 7.0 & 7.2 & 6.6 & 7.2 & 6.8 & \textcolor{blue}{7.33}\\
+        \bottomrule
+        \end{tabular}
+        \caption{Average Number of Communities}
+ }
+
+
+\includegraphics[width=\textwidth]{figs/presentationFigs/corn-comm-tables.png}
+\end{frame}
+
+\begin{frame}{Communities - Corn (2013) }
+\includegraphics[width=\textwidth]{figs/presentationFigs/corn2013all.png}\\
+% \scriptsize \phantom{lsakdjflsdjflksa} Corn Communities (2013) \phantom{aksjldflkajdlkfsafdjjdf} Corn Communities (2019) 
+% \phantom{sfjlaskjfasjdfksdjlfa}
+
+
+
+\end{frame}
+
+\begin{frame}{Communities - Corn (2019)}
+    \includegraphics[width=\textwidth]{figs/presentationFigs/corn2019all.png}
+\end{frame}
+
+\iffalse
+\begin{frame}{Communities - Corn (China)}
+
+\begin{columns}[onlytextwidth]
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny China neighbors (2017)}
+                \includegraphics[scale=0.15]{figs/networks/corn2017chinaneighbors.png}
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\hfill
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny China neighbors (2019)}
+                \includegraphics[scale=0.13]{figs/networks/corn2019chinaneighbors.png}\\
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\end{columns}
+\vspace{-35pt}
+\begin{figure}
+    \centering
+    \caption*{\tiny China neighbors (2022)}
+    \includegraphics[scale=0.15]{figs/networks/corn2022chinaneighbor.png}    
+\end{figure}
+\end{frame}
+\begin{frame}{Communities - Corn (US)}
+
+\begin{columns}[onlytextwidth]
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny US neighbors (2017)}
+                \includegraphics[scale=0.12]{figs/networks/corn2017usneighbors.png}
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\hfill
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny US neighbors (2019)}
+                \includegraphics[scale=0.11]{figs/networks/corn2019usneighbors.png}\\
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\end{columns}
+\vspace{-35pt}
+\begin{figure}
+    \centering
+    \caption*{\tiny US neighbors (2022)}
+    \includegraphics[scale=0.15]{figs/networks/corn2022usneighbors.png}    
+\end{figure}
+
+\end{frame}
+\begin{frame}{Communities - Corn (Brazil)}
+\begin{columns}[onlytextwidth]
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny Brazil neighbors (2017)}
+                \includegraphics[scale=0.12]{figs/networks/corn2017brazilneighbors.png}
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\hfill
+    \begin{column}{.5\textwidth}
+        \begin{minipage}[t][.5\textheight][t]{\textwidth}
+            \begin{figure}
+                \caption*{\tiny Brazil neighbors (2019)}
+                \includegraphics[scale=0.13]{figs/networks/corn2022brazilneighbor.png}\\
+            \end{figure}
+        \end{minipage}
+    \end{column}
+\end{columns}
+\vspace{-35pt}
+\begin{figure}
+    \centering
+    \caption*{\tiny Brazil neighbors (2022)}
+    \includegraphics[scale=0.16]{figs/networks/pork2022brazilneighbors.png}    
+\end{figure}
+
+\end{frame}
+\fi
+
+\begin{frame}{Clustering (Corn)}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{figs/presentationFigs/corn-clust.pdf}
+\end{figure}
+\begin{itemize}
+    \small
+    \item[\ding{213}] Declining clustering coefficient, similar to pork and other commodities.  \\
+    
+\end{itemize}
+\end{frame}
+\begin{frame}{Clustering}
+    \includegraphics[width=\textwidth]{figs/presentationFigs/clust-All.pdf}
+\end{frame}
+\section{Takeaways}
+\begin{frame}{Takeaways and Future}
+    \begin{itemize}\itemsep20pt
+        \item[\ding{213}] Food supply chains are changing: new influencers, more sub-chains, tendency towards deglobalization. 
+        
+        \item[\ding{213}] Friendshoring in early stages...
+        \item[\ding{213}] Resiliency and safeguards are major thrust areas.
+        \item[\ding{213}] Food security is under threat if supply chains deglobalize (availability and access issues).
+    \end{itemize}
+\end{frame}
+\appendix
+
+\begin{frame}[plain]
+    \Large Appendix
+
+\end{frame}
+\begin{frame}{Centrality Measures}
+    \includegraphics[scale=0.2]{figs/presentationFigs/centralitiesAll.pdf}
+\end{frame}
+\begin{frame}{Community Detection}
+    \includegraphics[width=\textwidth]{figs/presentationFigs/CommunitiesAllComms.png}
+\end{frame}
+
+\begin{frame}{Clustering}
+    \includegraphics[width=\textwidth]{figs/presentationFigs/clust-All.pdf}
+\end{frame}
